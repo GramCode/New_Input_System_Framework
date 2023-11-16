@@ -29,6 +29,7 @@ public class InputManager : MonoBehaviour
     }
 
     PlayerInputActions _input;
+    private bool _playerGrounded;
 
     private void Start()
     {
@@ -36,9 +37,29 @@ public class InputManager : MonoBehaviour
         _input.Player.Enable();
     }
 
-    public void MovePlayer(Transform player, float speed)
+    public void MovePlayer(Transform player, float speed, CharacterController controller, Animator anim)
     {
-        var move = _input.Player.Movement.ReadValue<Vector2>();
-        player.Translate(new Vector3(move.x, 0, move.y) * Time.deltaTime * speed);
+        _playerGrounded = controller.isGrounded;
+        var movement = _input.Player.Movement.ReadValue<Vector2>();
+        var vertical = movement.y;
+        var horizontal = movement.x;
+
+        var direction = player.forward * vertical;
+        var velocity = direction * speed;
+
+
+        anim.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
+
+
+        if (_playerGrounded)
+            velocity.y = 0f;
+        if (!_playerGrounded)
+        {
+            velocity.y += -20f * Time.deltaTime;
+        }
+
+        controller.Move(velocity * Time.deltaTime);
+        player.Rotate(player.up * horizontal);
+
     }
 }
