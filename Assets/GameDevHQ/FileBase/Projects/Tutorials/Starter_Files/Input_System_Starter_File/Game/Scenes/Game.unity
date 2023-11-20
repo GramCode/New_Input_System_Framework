@@ -710,6 +710,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa731a1607da14f70882c556f3945ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _area: {fileID: 1176696859}
+  _markers: []
 --- !u!4 &48569155
 Transform:
   m_ObjectHideFlags: 0
@@ -9323,7 +9325,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 482471385}
+      addedObject: {fileID: 482471388}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!1 &482471384 stripped
 GameObject:
@@ -9331,7 +9333,13 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 482471383}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &482471385
+--- !u!4 &482471386 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
+    type: 3}
+  m_PrefabInstance: {fileID: 482471383}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &482471388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9340,7 +9348,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 482471384}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 14f24ed6bf1e64b3481223207108700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneType: 1
@@ -9351,14 +9359,7 @@ MonoBehaviour:
   - {fileID: 758722189}
   _inventoryIcon: {fileID: 21300000, guid: 8e46bcb2f14d4d144b9e4a395b47efa2, type: 3}
   _zoneKeyInput: 101
-  _keyState: 0
   _marker: {fileID: 605505802}
---- !u!4 &482471386 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
-    type: 3}
-  m_PrefabInstance: {fileID: 482471383}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &485545739
 GameObject:
   m_ObjectHideFlags: 0
@@ -10784,6 +10785,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Taxi
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: f64e0c2ce45bd4635b99731a2d590520,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -11577,7 +11583,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 564970562}
+      addedObject: {fileID: 564970564}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!4 &564970560 stripped
 Transform:
@@ -11591,7 +11597,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 564970559}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &564970562
+--- !u!114 &564970564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11600,17 +11606,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 564970561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 14f24ed6bf1e64b3481223207108700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneType: 1
   _zoneID: 2
   _requiredID: 1
-  _displayMessage: Denotate C4
+  _displayMessage: Detonate C4
   _zoneItems: []
   _inventoryIcon: {fileID: 21300000, guid: 88841726d7ebbfc46bf799ee1bfb7d3f, type: 3}
-  _zoneKeyInput: 32
-  _keyState: 0
+  _zoneKeyInput: 101
   _marker: {fileID: 1331263896}
 --- !u!1001 &565131287
 PrefabInstance:
@@ -14198,8 +14203,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.3444427e+28, y: 3.8963248e+27, z: 7.6830814e+31,
-    w: 3.6434754e+34}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 1e-45, z: 1.02e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -26876,7 +26880,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1176696857}
+      addedObject: {fileID: 1176696859}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!4 &1176696855 stripped
 Transform:
@@ -26890,7 +26894,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1176696854}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1176696857
+--- !u!114 &1176696859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26899,7 +26903,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1176696856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 14f24ed6bf1e64b3481223207108700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneType: 0
@@ -26911,7 +26915,6 @@ MonoBehaviour:
   - {fileID: 908574055}
   _inventoryIcon: {fileID: 21300000, guid: 81dff3a1ca824714aae965897edd2351, type: 3}
   _zoneKeyInput: 101
-  _keyState: 0
   _marker: {fileID: 1583429342}
 --- !u!1001 &1178759240
 PrefabInstance:
@@ -30527,7 +30530,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 1bf7bcc5990354d789d1b87e24f22665,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38734,6 +38737,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10fbee8a99d5f4ddea65c479cfdfb5d2, type: 3}
+--- !u!1 &1817206291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817206293}
+  - component: {fileID: 1817206292}
+  m_Layer: 0
+  m_Name: TaxiExplosion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1817206292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817206291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bddf82b792e2c483baf2869b5cb3bc67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _taxi: {fileID: 1970003800}
+  _wrekedCar: {fileID: 940387683}
+  _explosionPrefab: {fileID: 1567341239667122, guid: a787b4a495bb64d96830e95e2c353bdd,
+    type: 3}
+--- !u!4 &1817206293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817206291}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.197, y: 0.94469976, z: -8.396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1818928847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4a0a076f5d87d456c922826ac1d1e020,
@@ -44808,7 +44859,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _interactableZone
       value: 
-      objectReference: {fileID: 482471385}
+      objectReference: {fileID: 0}
     - target: {fileID: 2496590969500232579, guid: 2c02ca62d0e18c748a449b999ebb8d62,
         type: 3}
       propertyPath: _interactableZone.Array.size
@@ -44818,12 +44869,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _interactableZone.Array.data[0]
       value: 
-      objectReference: {fileID: 482471385}
+      objectReference: {fileID: 0}
     - target: {fileID: 2496590969500232579, guid: 2c02ca62d0e18c748a449b999ebb8d62,
         type: 3}
       propertyPath: _interactableZone.Array.data[1]
       value: 
-      objectReference: {fileID: 564970562}
+      objectReference: {fileID: 0}
     - target: {fileID: 2769769510159614720, guid: 2c02ca62d0e18c748a449b999ebb8d62,
         type: 3}
       propertyPath: m_Name
@@ -44881,3 +44932,4 @@ SceneRoots:
   - {fileID: 763561850}
   - {fileID: 494705884}
   - {fileID: 48569155}
+  - {fileID: 1817206293}

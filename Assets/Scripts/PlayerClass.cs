@@ -9,6 +9,8 @@ public class PlayerClass : MonoBehaviour
     [SerializeField]
     private float _speed = 4f;
     private PlayerInputActions _input;
+    [SerializeField]
+    private float _rotationMultiplier = 1.5f;
 
     private void Start()
     {
@@ -29,6 +31,6 @@ public class PlayerClass : MonoBehaviour
 
     void Update()
     {
-        InputManager.Instance.MovePlayer(transform, _speed, _controller, _anim);
+        InputManager.Instance.MovePlayer(transform, _speed, _controller, _anim, _rotationMultiplier);
     }
 }

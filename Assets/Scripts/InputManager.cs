@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Scripts.UI;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -28,21 +29,86 @@ public class InputManager : MonoBehaviour
         _instance = this;
     }
 
-    PlayerInputActions _input;
+    [SerializeField]
+    private InteractableArea _area;
+    [SerializeField]
+    private GameObject[] _markers;
+
+    private PlayerInputActions _input;
     private bool _playerGrounded;
+    private bool _canInteract = false;
+    private bool _itemColected = false;
+    private bool _actionPerformed = false;
 
     private void Start()
     {
         _input = new PlayerInputActions();
         _input.Player.Enable();
+        _input.Player.Interact.started += Interact_started;
+        _input.Player.Interact.canceled += Interact_canceled;
     }
 
-    public void MovePlayer(Transform player, float speed, CharacterController controller, Animator anim)
+    private void Interact_started(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        _canInteract = true;
+    }
+
+    private void Interact_canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        _canInteract = false;
+    }
+
+    public bool PickUpItem(GameObject[] zoneItems, Sprite icon, InteractableArea interactableArea)
+    {
+        if (_canInteract == true && _itemColected == false)
+        {
+            foreach (var item in zoneItems)
+            {
+                item.SetActive(false);
+            }
+            UIManager.Instance.DisplayInteractableZoneMessage(false);
+            UIManager.Instance.UpdateInventoryDisplay(icon);
+            _itemColected = true;
+            interactableArea.InteractionPerformed();
+            
+        }
+
+        return _itemColected;
+    }
+
+    public bool PerformAction(GameObject[] zoneItems, Sprite inventoryIcon, InteractableArea interactableArea)
+    {
+        if (_canInteract == true)
+        {
+            _canInteract = false;
+            UIManager.Instance.DisplayInteractableZoneMessage(false);
+            _actionPerformed = true;
+
+            foreach (var item in zoneItems)
+            {
+                item.SetActive(true);
+            }
+
+            if (inventoryIcon != null)
+                UIManager.Instance.UpdateInventoryDisplay(inventoryIcon);
+            interactableArea.InteractionPerformed();
+            
+        }
+
+        return _actionPerformed;
+    }
+
+    public void ResetActionPerformed()
+    {
+        _actionPerformed = false;
+    }
+
+    public void MovePlayer(Transform player, float speed, CharacterController controller, Animator anim, float rotationMultiplier)
     {
         _playerGrounded = controller.isGrounded;
         var movement = _input.Player.Movement.ReadValue<Vector2>();
         var vertical = movement.y;
-        var horizontal = movement.x;
+        var horizontal = movement.x * rotationMultiplier;
 
         var direction = player.forward * vertical;
         var velocity = direction * speed;
@@ -62,4 +128,6 @@ public class InputManager : MonoBehaviour
         player.Rotate(player.up * horizontal);
 
     }
+
+
 }

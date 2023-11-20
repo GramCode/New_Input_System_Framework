@@ -22,7 +22,6 @@ namespace Game.Scripts.Player
         [SerializeField]
         private GameObject _model;
 
-
         private void OnEnable()
         {
             InteractableZone.onZoneInteractionComplete += InteractableZone_onZoneInteractionComplete;

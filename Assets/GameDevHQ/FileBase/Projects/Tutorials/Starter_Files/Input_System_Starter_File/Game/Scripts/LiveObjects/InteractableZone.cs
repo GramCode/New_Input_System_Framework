@@ -81,6 +81,7 @@ namespace Game.Scripts.LiveObjects
                     case ZoneType.Collectable:
                         if (_itemsCollected == false)
                         {
+                            Debug.Log("Displaying message");
                             _inZone = true;
                             if (_displayMessage != null)
                             {
