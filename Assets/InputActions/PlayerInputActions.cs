@@ -114,6 +114,180 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Drone"",
+            ""id"": ""b3d5cc6a-1f2f-4262-8800-c4e0cdb24756"",
+            ""actions"": [
+                {
+                    ""name"": ""ForwardBackward"",
+                    ""type"": ""Value"",
+                    ""id"": ""03907985-551b-4837-a252-a6787b42dc75"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Strafe"",
+                    ""type"": ""Value"",
+                    ""id"": ""91265607-e616-45a0-a331-7b2d55927b26"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""55661507-05fa-4262-a996-6ab5b5cbe32a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ThrustUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""1cc33079-b1f7-40bf-91d8-b2296264f8ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThrustDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""285e85cc-426d-47d7-8500-489bcf5ca9a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""sw"",
+                    ""id"": ""63fa357d-6376-4b22-9d5f-7725632fa401"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ForwardBackward"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""46c47def-76d3-4d6f-be9c-b1fe03eac2b4"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ForwardBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""fb9b0838-a52b-4223-8e43-c5acc79873dd"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ForwardBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""413a42a4-1dbd-476c-af49-694b5627dff6"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Strafe"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c179004b-7794-4943-a063-023b2340dfa0"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Strafe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""8b6dca0b-1fb8-49f0-9435-901fd8166218"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Strafe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""QE"",
+                    ""id"": ""858ae044-50cd-4169-aa2f-b5f1446dee4b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""bb65125c-a687-4029-b373-de8c4fa10351"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""0ee65b32-62c7-4d8b-88db-5ff8748037a2"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6f8ef72-49ee-4fa8-b0d5-e4c62b789e6b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrustUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8488cdf-8777-4b9c-b52f-cda3261e9a15"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThrustDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -122,6 +296,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        // Drone
+        m_Drone = asset.FindActionMap("Drone", throwIfNotFound: true);
+        m_Drone_ForwardBackward = m_Drone.FindAction("ForwardBackward", throwIfNotFound: true);
+        m_Drone_Strafe = m_Drone.FindAction("Strafe", throwIfNotFound: true);
+        m_Drone_Rotate = m_Drone.FindAction("Rotate", throwIfNotFound: true);
+        m_Drone_ThrustUp = m_Drone.FindAction("ThrustUp", throwIfNotFound: true);
+        m_Drone_ThrustDown = m_Drone.FindAction("ThrustDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -233,9 +414,95 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Drone
+    private readonly InputActionMap m_Drone;
+    private List<IDroneActions> m_DroneActionsCallbackInterfaces = new List<IDroneActions>();
+    private readonly InputAction m_Drone_ForwardBackward;
+    private readonly InputAction m_Drone_Strafe;
+    private readonly InputAction m_Drone_Rotate;
+    private readonly InputAction m_Drone_ThrustUp;
+    private readonly InputAction m_Drone_ThrustDown;
+    public struct DroneActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DroneActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ForwardBackward => m_Wrapper.m_Drone_ForwardBackward;
+        public InputAction @Strafe => m_Wrapper.m_Drone_Strafe;
+        public InputAction @Rotate => m_Wrapper.m_Drone_Rotate;
+        public InputAction @ThrustUp => m_Wrapper.m_Drone_ThrustUp;
+        public InputAction @ThrustDown => m_Wrapper.m_Drone_ThrustDown;
+        public InputActionMap Get() { return m_Wrapper.m_Drone; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DroneActions set) { return set.Get(); }
+        public void AddCallbacks(IDroneActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DroneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DroneActionsCallbackInterfaces.Add(instance);
+            @ForwardBackward.started += instance.OnForwardBackward;
+            @ForwardBackward.performed += instance.OnForwardBackward;
+            @ForwardBackward.canceled += instance.OnForwardBackward;
+            @Strafe.started += instance.OnStrafe;
+            @Strafe.performed += instance.OnStrafe;
+            @Strafe.canceled += instance.OnStrafe;
+            @Rotate.started += instance.OnRotate;
+            @Rotate.performed += instance.OnRotate;
+            @Rotate.canceled += instance.OnRotate;
+            @ThrustUp.started += instance.OnThrustUp;
+            @ThrustUp.performed += instance.OnThrustUp;
+            @ThrustUp.canceled += instance.OnThrustUp;
+            @ThrustDown.started += instance.OnThrustDown;
+            @ThrustDown.performed += instance.OnThrustDown;
+            @ThrustDown.canceled += instance.OnThrustDown;
+        }
+
+        private void UnregisterCallbacks(IDroneActions instance)
+        {
+            @ForwardBackward.started -= instance.OnForwardBackward;
+            @ForwardBackward.performed -= instance.OnForwardBackward;
+            @ForwardBackward.canceled -= instance.OnForwardBackward;
+            @Strafe.started -= instance.OnStrafe;
+            @Strafe.performed -= instance.OnStrafe;
+            @Strafe.canceled -= instance.OnStrafe;
+            @Rotate.started -= instance.OnRotate;
+            @Rotate.performed -= instance.OnRotate;
+            @Rotate.canceled -= instance.OnRotate;
+            @ThrustUp.started -= instance.OnThrustUp;
+            @ThrustUp.performed -= instance.OnThrustUp;
+            @ThrustUp.canceled -= instance.OnThrustUp;
+            @ThrustDown.started -= instance.OnThrustDown;
+            @ThrustDown.performed -= instance.OnThrustDown;
+            @ThrustDown.canceled -= instance.OnThrustDown;
+        }
+
+        public void RemoveCallbacks(IDroneActions instance)
+        {
+            if (m_Wrapper.m_DroneActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDroneActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DroneActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DroneActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DroneActions @Drone => new DroneActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IDroneActions
+    {
+        void OnForwardBackward(InputAction.CallbackContext context);
+        void OnStrafe(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnThrustUp(InputAction.CallbackContext context);
+        void OnThrustDown(InputAction.CallbackContext context);
     }
 }

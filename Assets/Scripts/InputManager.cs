@@ -39,6 +39,7 @@ public class InputManager : MonoBehaviour
     private bool _canInteract = false;
     private bool _itemColected = false;
     private bool _actionPerformed = false;
+    private bool _fillProgressBar = false;
 
     private void Start()
     {
@@ -51,14 +52,16 @@ public class InputManager : MonoBehaviour
     private void Interact_started(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         _canInteract = true;
+        _fillProgressBar = true;
     }
 
     private void Interact_canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         _canInteract = false;
+        _fillProgressBar = false;
     }
 
-    public bool PickUpItem(GameObject[] zoneItems, Sprite icon, InteractableArea interactableArea)
+    public bool PickUpItem(GameObject[] zoneItems, Sprite icon, int zoneID, InteractableArea interactableArea)
     {
         if (_canInteract == true && _itemColected == false)
         {
@@ -69,6 +72,7 @@ public class InputManager : MonoBehaviour
             UIManager.Instance.DisplayInteractableZoneMessage(false);
             UIManager.Instance.UpdateInventoryDisplay(icon);
             _itemColected = true;
+            interactableArea.CompleteTask(zoneID);
             interactableArea.InteractionPerformed();
             
         }
@@ -80,7 +84,7 @@ public class InputManager : MonoBehaviour
     {
         if (_canInteract == true)
         {
-            _canInteract = false;
+            //_canInteract = false;
             UIManager.Instance.DisplayInteractableZoneMessage(false);
             _actionPerformed = true;
 
@@ -129,5 +133,9 @@ public class InputManager : MonoBehaviour
 
     }
 
+    public bool FillProgressBar()
+    {
+        return _fillProgressBar;
+    }
 
 }

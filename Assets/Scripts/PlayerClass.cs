@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Scripts.LiveObjects;
 using UnityEngine;
 
 public class PlayerClass : MonoBehaviour
@@ -11,6 +12,20 @@ public class PlayerClass : MonoBehaviour
     private PlayerInputActions _input;
     [SerializeField]
     private float _rotationMultiplier = 1.5f;
+    [SerializeField]
+    private Detonator _detonator;
+
+    private void OnEnable()
+    {
+        InteractableArea.onZoneInteractionComplete += InteractableArea_onZoneInteractionComplete;
+        //Laptop.onHackComplete += ReleasePlayerControl;
+        //Laptop.onHackEnded += ReturnPlayerControl;
+        //Forklift.onDriveModeEntered += ReleasePlayerControl;
+        //Forklift.onDriveModeExited += ReturnPlayerControl;
+        //Forklift.onDriveModeEntered += HidePlayer;
+        //Drone.OnEnterFlightMode += ReleasePlayerControl;
+        //Drone.onExitFlightmode += ReturnPlayerControl;
+    }
 
     private void Start()
     {
@@ -32,5 +47,36 @@ public class PlayerClass : MonoBehaviour
     void Update()
     {
         InputManager.Instance.MovePlayer(transform, _speed, _controller, _anim, _rotationMultiplier);
+    }
+
+    private void InteractableArea_onZoneInteractionComplete(InteractableArea zone)
+    {
+        switch (zone.GetZoneID())
+        {
+            case 1: //place c4
+                _detonator.Show();
+                break;
+            case 2: //Trigger Explosion
+                TriggerExplosive();
+                break;
+        }
+    }
+
+    private void TriggerExplosive()
+    {
+        _detonator.TriggerExplosion();
+    }
+
+
+    private void OnDisable()
+    {
+        InteractableArea.onZoneInteractionComplete -= InteractableArea_onZoneInteractionComplete;
+        //Laptop.onHackComplete -= ReleasePlayerControl;
+        //Laptop.onHackEnded -= ReturnPlayerControl;
+        //Forklift.onDriveModeEntered -= ReleasePlayerControl;
+        //Forklift.onDriveModeExited -= ReturnPlayerControl;
+        //Forklift.onDriveModeEntered -= HidePlayer;
+        //Drone.OnEnterFlightMode -= ReleasePlayerControl;
+        //Drone.onExitFlightmode -= ReturnPlayerControl;
     }
 }

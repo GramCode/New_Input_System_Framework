@@ -6527,7 +6527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8006a86344ae3418e86c4710aa1f0ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
+  _speed: 5
+  _rotationMultiplier: 1.5
+  _detonator: {fileID: 2496590969500232579}
 --- !u!1001 &369121378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19760,7 +19762,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972744894}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22151199, y: 0.046233162, z: -0.010514532, w: 0.9740043}
+  m_LocalRotation: {x: 0.22150634, y: 0.046751115, z: -0.010632325, w: 0.9739796}
   m_LocalPosition: {x: -0.48177326, y: 4.5286655, z: -4.833789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -38737,54 +38739,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10fbee8a99d5f4ddea65c479cfdfb5d2, type: 3}
---- !u!1 &1817206291
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1817206293}
-  - component: {fileID: 1817206292}
-  m_Layer: 0
-  m_Name: TaxiExplosion
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1817206292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817206291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bddf82b792e2c483baf2869b5cb3bc67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _taxi: {fileID: 1970003800}
-  _wrekedCar: {fileID: 940387683}
-  _explosionPrefab: {fileID: 1567341239667122, guid: a787b4a495bb64d96830e95e2c353bdd,
-    type: 3}
---- !u!4 &1817206293
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817206291}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.197, y: 0.94469976, z: -8.396}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1818928847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4a0a076f5d87d456c922826ac1d1e020,
@@ -42727,6 +42681,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2029547919}
+    - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2029547921}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!4 &2029547917 stripped
 Transform:
@@ -42747,7 +42705,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029547918}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
   m_Name: 
@@ -42760,6 +42718,26 @@ MonoBehaviour:
   _inventoryIcon: {fileID: 0}
   _zoneKeyInput: 101
   _keyState: 1
+  _marker: {fileID: 55150249}
+--- !u!114 &2029547921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029547918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f24ed6bf1e64b3481223207108700f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoneType: 2
+  _zoneID: 3
+  _requiredID: 2
+  _displayMessage: Hack Cameras
+  _zoneItems: []
+  _inventoryIcon: {fileID: 0}
+  _zoneKeyInput: 101
   _marker: {fileID: 55150249}
 --- !u!4 &2030128479 stripped
 Transform:
@@ -44869,12 +44847,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _interactableZone.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 482471388}
     - target: {fileID: 2496590969500232579, guid: 2c02ca62d0e18c748a449b999ebb8d62,
         type: 3}
       propertyPath: _interactableZone.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 564970564}
     - target: {fileID: 2769769510159614720, guid: 2c02ca62d0e18c748a449b999ebb8d62,
         type: 3}
       propertyPath: m_Name
@@ -44932,4 +44910,3 @@ SceneRoots:
   - {fileID: 763561850}
   - {fileID: 494705884}
   - {fileID: 48569155}
-  - {fileID: 1817206293}

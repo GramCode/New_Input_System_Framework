@@ -11,11 +11,11 @@ namespace Game.Scripts.LiveObjects
         private bool _c4Placed;
         private MeshRenderer _render;
         [SerializeField]
-        private InteractableZone[] _interactableZone;
+        private InteractableArea[] _interactableZone;
 
         private void OnEnable()
         {
-            InteractableZone.onZoneInteractionComplete += InteractableZone_onZoneInteractionComplete;
+            InteractableArea.onZoneInteractionComplete += InteractableArea_onZoneInteractionComplete;
         }
 
         private void Start()
@@ -23,7 +23,7 @@ namespace Game.Scripts.LiveObjects
             _render = GetComponent<MeshRenderer>();
         }
 
-        private void InteractableZone_onZoneInteractionComplete(InteractableZone zone)
+        private void InteractableArea_onZoneInteractionComplete(InteractableArea zone)
         {
             if (_c4Placed != true && zone.GetZoneID() == 1) //placed C4
             {             
@@ -56,9 +56,10 @@ namespace Game.Scripts.LiveObjects
             _render.enabled = true;
         }
 
-        private void Ondisable()
+        private void OnDisable()
         {
-            InteractableZone.onZoneInteractionComplete -= InteractableZone_onZoneInteractionComplete;
+            InteractableArea.onZoneInteractionComplete -= InteractableArea_onZoneInteractionComplete;
+
         }
     }
 }

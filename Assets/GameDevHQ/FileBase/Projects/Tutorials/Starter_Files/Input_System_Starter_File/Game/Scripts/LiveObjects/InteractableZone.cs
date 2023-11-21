@@ -61,7 +61,6 @@ namespace Game.Scripts.LiveObjects
             }
         }
 
-
         public static event Action<InteractableZone> onZoneInteractionComplete;
         public static event Action<int> onHoldStarted;
         public static event Action<int> onHoldEnded;
@@ -69,7 +68,6 @@ namespace Game.Scripts.LiveObjects
         private void OnEnable()
         {
             InteractableZone.onZoneInteractionComplete += SetMarker;
-
         }
 
         private void OnTriggerEnter(Collider other)
@@ -81,7 +79,6 @@ namespace Game.Scripts.LiveObjects
                     case ZoneType.Collectable:
                         if (_itemsCollected == false)
                         {
-                            Debug.Log("Displaying message");
                             _inZone = true;
                             if (_displayMessage != null)
                             {
