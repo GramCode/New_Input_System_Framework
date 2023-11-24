@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Scripts.UI;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -29,17 +30,25 @@ public class InputManager : MonoBehaviour
         _instance = this;
     }
 
+    public enum ActionMapsEnum
+    {
+        Player,
+        Cameras,
+        Drone
+    }
+
     [SerializeField]
-    private InteractableArea _area;
+    private InteractableArea _holdArea;
     [SerializeField]
     private GameObject[] _markers;
 
     private PlayerInputActions _input;
     private bool _playerGrounded;
     private bool _canInteract = false;
-    private bool _itemColected = false;
-    private bool _actionPerformed = false;
-    private bool _fillProgressBar = false;
+    private bool _swapCam = false;
+    private bool _escapePressed = false;
+
+    private List<InputActionMap> _inputActionMaps;
 
     private void Start()
     {
@@ -47,64 +56,28 @@ public class InputManager : MonoBehaviour
         _input.Player.Enable();
         _input.Player.Interact.started += Interact_started;
         _input.Player.Interact.canceled += Interact_canceled;
+
+        _inputActionMaps = new List<InputActionMap>
+        {
+            _input.Player,
+            _input.Cameras,
+            _input.Drone
+        };
     }
 
-    private void Interact_started(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    private void Interact_started(InputAction.CallbackContext context)
     {
         _canInteract = true;
-        _fillProgressBar = true;
     }
 
-    private void Interact_canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    private void Interact_canceled(InputAction.CallbackContext context)
     {
         _canInteract = false;
-        _fillProgressBar = false;
     }
 
-    public bool PickUpItem(GameObject[] zoneItems, Sprite icon, int zoneID, InteractableArea interactableArea)
+    public bool Interacted()
     {
-        if (_canInteract == true && _itemColected == false)
-        {
-            foreach (var item in zoneItems)
-            {
-                item.SetActive(false);
-            }
-            UIManager.Instance.DisplayInteractableZoneMessage(false);
-            UIManager.Instance.UpdateInventoryDisplay(icon);
-            _itemColected = true;
-            interactableArea.CompleteTask(zoneID);
-            interactableArea.InteractionPerformed();
-            
-        }
-
-        return _itemColected;
-    }
-
-    public bool PerformAction(GameObject[] zoneItems, Sprite inventoryIcon, InteractableArea interactableArea)
-    {
-        if (_canInteract == true)
-        {
-            //_canInteract = false;
-            UIManager.Instance.DisplayInteractableZoneMessage(false);
-            _actionPerformed = true;
-
-            foreach (var item in zoneItems)
-            {
-                item.SetActive(true);
-            }
-
-            if (inventoryIcon != null)
-                UIManager.Instance.UpdateInventoryDisplay(inventoryIcon);
-            interactableArea.InteractionPerformed();
-            
-        }
-
-        return _actionPerformed;
-    }
-
-    public void ResetActionPerformed()
-    {
-        _actionPerformed = false;
+        return _canInteract;
     }
 
     public void MovePlayer(Transform player, float speed, CharacterController controller, Animator anim, float rotationMultiplier)
@@ -133,9 +106,57 @@ public class InputManager : MonoBehaviour
 
     }
 
-    public bool FillProgressBar()
+    public void SwapActionMap(ActionMapsEnum actionMap)
     {
-        return _fillProgressBar;
+        foreach (var map in _inputActionMaps)
+        {
+            map.Disable();
+        }
+
+        switch (actionMap)
+        {
+            case ActionMapsEnum.Player:
+                _input.Player.Enable();
+                break;
+            case ActionMapsEnum.Cameras:
+                _input.Cameras.Enable();
+                _input.Cameras.Swap.performed += Swap_performed;
+                _input.Cameras.ExitCam.performed += ExitCam_performed;
+                break;
+            case ActionMapsEnum.Drone:
+                _input.Drone.Enable();
+                break;
+        }
     }
 
+    private void Swap_performed(InputAction.CallbackContext context)
+    {
+        _swapCam = true;
+    }
+
+    public void StopSwappingCameras()
+    {
+        _swapCam = false;
+    }
+
+    private void ExitCam_performed(InputAction.CallbackContext context)
+    {
+        SwapActionMap(ActionMapsEnum.Player);
+        _escapePressed = true;
+    }
+
+    public bool SwapCamera()
+    {
+        return _swapCam;
+    }
+
+    public bool ExitCameras()
+    {
+        return _escapePressed;
+    }
+
+    public void ResetEscape()
+    {
+        _escapePressed = false;
+    }
 }

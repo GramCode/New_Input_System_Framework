@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Game.Scripts.LiveObjects;
 using UnityEngine;
 
@@ -14,12 +15,17 @@ public class PlayerClass : MonoBehaviour
     private float _rotationMultiplier = 1.5f;
     [SerializeField]
     private Detonator _detonator;
+    private bool _canMove = true;
+    [SerializeField]
+    private CinemachineVirtualCamera _followCam;
+    [SerializeField]
+    private GameObject _model;
 
     private void OnEnable()
     {
         InteractableArea.onZoneInteractionComplete += InteractableArea_onZoneInteractionComplete;
-        //Laptop.onHackComplete += ReleasePlayerControl;
-        //Laptop.onHackEnded += ReturnPlayerControl;
+        Laptop.onHackComplete += ReleasePlayerControl;
+        Laptop.onHackEnded += ReturnPlayerControl;
         //Forklift.onDriveModeEntered += ReleasePlayerControl;
         //Forklift.onDriveModeExited += ReturnPlayerControl;
         //Forklift.onDriveModeEntered += HidePlayer;
@@ -46,7 +52,8 @@ public class PlayerClass : MonoBehaviour
 
     void Update()
     {
-        InputManager.Instance.MovePlayer(transform, _speed, _controller, _anim, _rotationMultiplier);
+        if (_canMove)
+            InputManager.Instance.MovePlayer(transform, _speed, _controller, _anim, _rotationMultiplier);
     }
 
     private void InteractableArea_onZoneInteractionComplete(InteractableArea zone)
@@ -62,6 +69,19 @@ public class PlayerClass : MonoBehaviour
         }
     }
 
+    private void ReleasePlayerControl()
+    {
+        _canMove = false;
+        _followCam.Priority = 9;
+    }
+
+    private void ReturnPlayerControl()
+    {
+        _model.SetActive(true);
+        _canMove = true;
+        _followCam.Priority = 10;
+    }
+
     private void TriggerExplosive()
     {
         _detonator.TriggerExplosion();
@@ -71,8 +91,8 @@ public class PlayerClass : MonoBehaviour
     private void OnDisable()
     {
         InteractableArea.onZoneInteractionComplete -= InteractableArea_onZoneInteractionComplete;
-        //Laptop.onHackComplete -= ReleasePlayerControl;
-        //Laptop.onHackEnded -= ReturnPlayerControl;
+        Laptop.onHackComplete -= ReleasePlayerControl;
+        Laptop.onHackEnded -= ReturnPlayerControl;
         //Forklift.onDriveModeEntered -= ReleasePlayerControl;
         //Forklift.onDriveModeExited -= ReturnPlayerControl;
         //Forklift.onDriveModeEntered -= HidePlayer;

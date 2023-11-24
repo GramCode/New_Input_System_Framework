@@ -24,7 +24,7 @@ namespace Game.Scripts.LiveObjects
         [SerializeField]
         private CinemachineVirtualCamera _droneCam;
         [SerializeField]
-        private InteractableZone _interactableZone;
+        private InteractableArea _interactableZone;
         
 
         public static event Action OnEnterFlightMode;
@@ -32,10 +32,10 @@ namespace Game.Scripts.LiveObjects
 
         private void OnEnable()
         {
-            InteractableZone.onZoneInteractionComplete += EnterFlightMode;
+            InteractableArea.onZoneInteractionComplete += EnterFlightMode;
         }
 
-        private void EnterFlightMode(InteractableZone zone)
+        private void EnterFlightMode(InteractableArea zone)
         {
             if (_inFlightMode != true && zone.GetZoneID() == 4) // drone Scene
             {
@@ -123,7 +123,7 @@ namespace Game.Scripts.LiveObjects
 
         private void OnDisable()
         {
-            InteractableZone.onZoneInteractionComplete -= EnterFlightMode;
+            InteractableArea.onZoneInteractionComplete -= EnterFlightMode;
         }
     }
 }

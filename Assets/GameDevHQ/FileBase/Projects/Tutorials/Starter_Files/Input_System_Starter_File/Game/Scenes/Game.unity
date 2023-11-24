@@ -710,7 +710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa731a1607da14f70882c556f3945ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _area: {fileID: 1176696859}
+  _holdArea: {fileID: 0}
   _markers: []
 --- !u!4 &48569155
 Transform:
@@ -6447,7 +6447,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 359860634}
-  - component: {fileID: 359860633}
   - component: {fileID: 359860632}
   - component: {fileID: 359860635}
   m_Layer: 0
@@ -6483,22 +6482,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &359860633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359860631}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d278a65e6d151a44b8e0fd78d0b8f85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 5
-  _detonator: {fileID: 2496590969500232579}
-  _followCam: {fileID: 1266060213}
-  _model: {fileID: 852618543}
 --- !u!4 &359860634
 Transform:
   m_ObjectHideFlags: 0
@@ -6530,6 +6513,8 @@ MonoBehaviour:
   _speed: 5
   _rotationMultiplier: 1.5
   _detonator: {fileID: 2496590969500232579}
+  _followCam: {fileID: 1266060213}
+  _model: {fileID: 852618543}
 --- !u!1001 &369121378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9361,6 +9346,7 @@ MonoBehaviour:
   - {fileID: 758722189}
   _inventoryIcon: {fileID: 21300000, guid: 8e46bcb2f14d4d144b9e4a395b47efa2, type: 3}
   _zoneKeyInput: 101
+  _keyState: 0
   _marker: {fileID: 605505802}
 --- !u!1 &485545739
 GameObject:
@@ -11526,6 +11512,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.28365996
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.26
       objectReference: {fileID: 0}
@@ -11537,7 +11528,7 @@ PrefabInstance:
     - target: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.18
+      value: 9.8558
       objectReference: {fileID: 0}
     - target: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
@@ -11618,6 +11609,7 @@ MonoBehaviour:
   _zoneItems: []
   _inventoryIcon: {fileID: 21300000, guid: 88841726d7ebbfc46bf799ee1bfb7d3f, type: 3}
   _zoneKeyInput: 101
+  _keyState: 0
   _marker: {fileID: 1331263896}
 --- !u!1001 &565131287
 PrefabInstance:
@@ -16616,7 +16608,7 @@ MonoBehaviour:
   - {fileID: 1329677325}
   - {fileID: 702883517}
   - {fileID: 95149679}
-  _interactableZone: {fileID: 2029547919}
+  _interactableZone: {fileID: 2029547921}
 --- !u!1 &817035025 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100018, guid: dd2a94e6375f34604b717d100c70532d,
@@ -19762,7 +19754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972744894}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22150634, y: 0.046751115, z: -0.010632325, w: 0.9739796}
+  m_LocalRotation: {x: 0.22150636, y: 0.046751115, z: -0.010632326, w: 0.9739796}
   m_LocalPosition: {x: -0.48177326, y: 4.5286655, z: -4.833789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21828,7 +21820,7 @@ MonoBehaviour:
   _speed: 5
   _propAnim: {fileID: 181193216}
   _droneCam: {fileID: 106664337}
-  _interactableZone: {fileID: 1810029383}
+  _interactableZone: {fileID: 1810029385}
 --- !u!65 &1073608671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26917,6 +26909,7 @@ MonoBehaviour:
   - {fileID: 908574055}
   _inventoryIcon: {fileID: 21300000, guid: 81dff3a1ca824714aae965897edd2351, type: 3}
   _zoneKeyInput: 101
+  _keyState: 0
   _marker: {fileID: 1583429342}
 --- !u!1001 &1178759240
 PrefabInstance:
@@ -32315,7 +32308,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1810029383}
+      addedObject: {fileID: 1810029385}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!1001 &1502343837
 PrefabInstance:
@@ -38645,7 +38638,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1501300053}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1810029383
+--- !u!114 &1810029385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38654,7 +38647,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1810029381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 14f24ed6bf1e64b3481223207108700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneType: 1
@@ -42680,10 +42673,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2029547919}
-    - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2029547921}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!4 &2029547917 stripped
@@ -42698,27 +42687,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2029547916}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2029547919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2029547918}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _zoneType: 2
-  _zoneID: 3
-  _requiredID: 2
-  _displayMessage: Hack Cameras
-  _zoneItems: []
-  _inventoryIcon: {fileID: 0}
-  _zoneKeyInput: 101
-  _keyState: 1
-  _marker: {fileID: 55150249}
 --- !u!114 &2029547921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42738,6 +42706,7 @@ MonoBehaviour:
   _zoneItems: []
   _inventoryIcon: {fileID: 0}
   _zoneKeyInput: 101
+  _keyState: 1
   _marker: {fileID: 55150249}
 --- !u!4 &2030128479 stripped
 Transform:

@@ -57,7 +57,6 @@ namespace Game.Scripts.LiveObjects
             set
             {
                 _currentZoneID = value; 
-                         
             }
         }
 
@@ -150,8 +149,6 @@ namespace Game.Scripts.LiveObjects
                 else if (Input.GetKey(_zoneKeyInput) && _keyState == KeyState.PressHold && _inHoldState == false)
                 {
                     _inHoldState = true;
-
-                   
 
                     switch (_zoneType)
                     {                      

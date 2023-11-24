@@ -94,6 +94,54 @@
             ]
         },
         {
+            "name": "Cameras",
+            "id": "5615d4fa-1dbe-4150-b359-5f9d5490013a",
+            "actions": [
+                {
+                    "name": "Swap",
+                    "type": "Button",
+                    "id": "a04105d4-0df6-4aaf-b51c-01ce82cadd2b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ExitCam",
+                    "type": "Button",
+                    "id": "032efdcb-0745-4353-8a7f-f9f1a7c0e4aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7c4bf862-9bca-44ec-bfa2-24180ff7baeb",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "060a4a8d-f645-4888-afcc-531c20bb639f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Drone",
             "id": "b3d5cc6a-1f2f-4262-8800-c4e0cdb24756",
             "actions": [

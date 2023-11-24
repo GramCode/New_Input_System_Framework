@@ -116,6 +116,54 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""Cameras"",
+            ""id"": ""5615d4fa-1dbe-4150-b359-5f9d5490013a"",
+            ""actions"": [
+                {
+                    ""name"": ""Swap"",
+                    ""type"": ""Button"",
+                    ""id"": ""a04105d4-0df6-4aaf-b51c-01ce82cadd2b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExitCam"",
+                    ""type"": ""Button"",
+                    ""id"": ""032efdcb-0745-4353-8a7f-f9f1a7c0e4aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7c4bf862-9bca-44ec-bfa2-24180ff7baeb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""060a4a8d-f645-4888-afcc-531c20bb639f"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Drone"",
             ""id"": ""b3d5cc6a-1f2f-4262-8800-c4e0cdb24756"",
             ""actions"": [
@@ -296,6 +344,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        // Cameras
+        m_Cameras = asset.FindActionMap("Cameras", throwIfNotFound: true);
+        m_Cameras_Swap = m_Cameras.FindAction("Swap", throwIfNotFound: true);
+        m_Cameras_ExitCam = m_Cameras.FindAction("ExitCam", throwIfNotFound: true);
         // Drone
         m_Drone = asset.FindActionMap("Drone", throwIfNotFound: true);
         m_Drone_ForwardBackward = m_Drone.FindAction("ForwardBackward", throwIfNotFound: true);
@@ -415,6 +467,60 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     }
     public PlayerActions @Player => new PlayerActions(this);
 
+    // Cameras
+    private readonly InputActionMap m_Cameras;
+    private List<ICamerasActions> m_CamerasActionsCallbackInterfaces = new List<ICamerasActions>();
+    private readonly InputAction m_Cameras_Swap;
+    private readonly InputAction m_Cameras_ExitCam;
+    public struct CamerasActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public CamerasActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Swap => m_Wrapper.m_Cameras_Swap;
+        public InputAction @ExitCam => m_Wrapper.m_Cameras_ExitCam;
+        public InputActionMap Get() { return m_Wrapper.m_Cameras; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CamerasActions set) { return set.Get(); }
+        public void AddCallbacks(ICamerasActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CamerasActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CamerasActionsCallbackInterfaces.Add(instance);
+            @Swap.started += instance.OnSwap;
+            @Swap.performed += instance.OnSwap;
+            @Swap.canceled += instance.OnSwap;
+            @ExitCam.started += instance.OnExitCam;
+            @ExitCam.performed += instance.OnExitCam;
+            @ExitCam.canceled += instance.OnExitCam;
+        }
+
+        private void UnregisterCallbacks(ICamerasActions instance)
+        {
+            @Swap.started -= instance.OnSwap;
+            @Swap.performed -= instance.OnSwap;
+            @Swap.canceled -= instance.OnSwap;
+            @ExitCam.started -= instance.OnExitCam;
+            @ExitCam.performed -= instance.OnExitCam;
+            @ExitCam.canceled -= instance.OnExitCam;
+        }
+
+        public void RemoveCallbacks(ICamerasActions instance)
+        {
+            if (m_Wrapper.m_CamerasActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICamerasActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CamerasActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CamerasActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CamerasActions @Cameras => new CamerasActions(this);
+
     // Drone
     private readonly InputActionMap m_Drone;
     private List<IDroneActions> m_DroneActionsCallbackInterfaces = new List<IDroneActions>();
@@ -496,6 +602,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface ICamerasActions
+    {
+        void OnSwap(InputAction.CallbackContext context);
+        void OnExitCam(InputAction.CallbackContext context);
     }
     public interface IDroneActions
     {
