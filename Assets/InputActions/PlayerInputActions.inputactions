@@ -81,6 +81,61 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Arrows",
+                    "id": "96c82454-5b4b-4db1-a020-415d5bdedb07",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "defb9d72-aa31-4ae8-83e4-e5e10e511fd9",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "cb4d074e-b12d-4391-b2b7-852178cde7d0",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "3e475b51-6c79-4255-a882-ce83bfe08556",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c533475d-c8ae-4052-a961-daf667d1b42f",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "f8875c37-076a-4a89-b2c5-f528c3b5deaf",
                     "path": "<Keyboard>/e",
@@ -173,18 +228,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ThrustUp",
-                    "type": "Button",
+                    "name": "Thrust",
+                    "type": "Value",
                     "id": "1cc33079-b1f7-40bf-91d8-b2296264f8ed",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "ThrustDown",
+                    "name": "Exit",
                     "type": "Button",
-                    "id": "285e85cc-426d-47d7-8500-489bcf5ca9a7",
+                    "id": "2ce383e1-51db-43d7-bf46-85f4c7ae3375",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -193,7 +248,7 @@
             ],
             "bindings": [
                 {
-                    "name": "sw",
+                    "name": "SW",
                     "id": "63fa357d-6376-4b22-9d5f-7725632fa401",
                     "path": "1DAxis",
                     "interactions": "",
@@ -293,25 +348,47 @@
                 },
                 {
                     "name": "",
-                    "id": "b6f8ef72-49ee-4fa8-b0d5-e4c62b789e6b",
-                    "path": "<Keyboard>/space",
+                    "id": "8e67c9c9-161e-41cd-98fd-9e7241e83a14",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ThrustUp",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "b8488cdf-8777-4b9c-b52f-cda3261e9a15",
+                    "name": "UpDown",
+                    "id": "991a7ee7-60fd-48a8-9393-70e2b46ec398",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Thrust",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "47e2c2fd-1036-4d0b-9abf-7b3573ae5a40",
                     "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ThrustDown",
+                    "action": "Thrust",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "2908416d-d213-4dbf-ae1a-c1112915eddf",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Thrust",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

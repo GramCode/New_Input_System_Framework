@@ -103,6 +103,61 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Arrows"",
+                    ""id"": ""96c82454-5b4b-4db1-a020-415d5bdedb07"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""defb9d72-aa31-4ae8-83e4-e5e10e511fd9"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""cb4d074e-b12d-4391-b2b7-852178cde7d0"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""3e475b51-6c79-4255-a882-ce83bfe08556"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c533475d-c8ae-4052-a961-daf667d1b42f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""f8875c37-076a-4a89-b2c5-f528c3b5deaf"",
                     ""path"": ""<Keyboard>/e"",
@@ -195,18 +250,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ThrustUp"",
-                    ""type"": ""Button"",
+                    ""name"": ""Thrust"",
+                    ""type"": ""Value"",
                     ""id"": ""1cc33079-b1f7-40bf-91d8-b2296264f8ed"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ThrustDown"",
+                    ""name"": ""Exit"",
                     ""type"": ""Button"",
-                    ""id"": ""285e85cc-426d-47d7-8500-489bcf5ca9a7"",
+                    ""id"": ""2ce383e1-51db-43d7-bf46-85f4c7ae3375"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -215,7 +270,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""sw"",
+                    ""name"": ""SW"",
                     ""id"": ""63fa357d-6376-4b22-9d5f-7725632fa401"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -315,25 +370,47 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b6f8ef72-49ee-4fa8-b0d5-e4c62b789e6b"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""8e67c9c9-161e-41cd-98fd-9e7241e83a14"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ThrustUp"",
+                    ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""b8488cdf-8777-4b9c-b52f-cda3261e9a15"",
+                    ""name"": ""UpDown"",
+                    ""id"": ""991a7ee7-60fd-48a8-9393-70e2b46ec398"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Thrust"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""47e2c2fd-1036-4d0b-9abf-7b3573ae5a40"",
                     ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ThrustDown"",
+                    ""action"": ""Thrust"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""2908416d-d213-4dbf-ae1a-c1112915eddf"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Thrust"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -353,8 +430,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Drone_ForwardBackward = m_Drone.FindAction("ForwardBackward", throwIfNotFound: true);
         m_Drone_Strafe = m_Drone.FindAction("Strafe", throwIfNotFound: true);
         m_Drone_Rotate = m_Drone.FindAction("Rotate", throwIfNotFound: true);
-        m_Drone_ThrustUp = m_Drone.FindAction("ThrustUp", throwIfNotFound: true);
-        m_Drone_ThrustDown = m_Drone.FindAction("ThrustDown", throwIfNotFound: true);
+        m_Drone_Thrust = m_Drone.FindAction("Thrust", throwIfNotFound: true);
+        m_Drone_Exit = m_Drone.FindAction("Exit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -527,8 +604,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Drone_ForwardBackward;
     private readonly InputAction m_Drone_Strafe;
     private readonly InputAction m_Drone_Rotate;
-    private readonly InputAction m_Drone_ThrustUp;
-    private readonly InputAction m_Drone_ThrustDown;
+    private readonly InputAction m_Drone_Thrust;
+    private readonly InputAction m_Drone_Exit;
     public struct DroneActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -536,8 +613,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @ForwardBackward => m_Wrapper.m_Drone_ForwardBackward;
         public InputAction @Strafe => m_Wrapper.m_Drone_Strafe;
         public InputAction @Rotate => m_Wrapper.m_Drone_Rotate;
-        public InputAction @ThrustUp => m_Wrapper.m_Drone_ThrustUp;
-        public InputAction @ThrustDown => m_Wrapper.m_Drone_ThrustDown;
+        public InputAction @Thrust => m_Wrapper.m_Drone_Thrust;
+        public InputAction @Exit => m_Wrapper.m_Drone_Exit;
         public InputActionMap Get() { return m_Wrapper.m_Drone; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -556,12 +633,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
-            @ThrustUp.started += instance.OnThrustUp;
-            @ThrustUp.performed += instance.OnThrustUp;
-            @ThrustUp.canceled += instance.OnThrustUp;
-            @ThrustDown.started += instance.OnThrustDown;
-            @ThrustDown.performed += instance.OnThrustDown;
-            @ThrustDown.canceled += instance.OnThrustDown;
+            @Thrust.started += instance.OnThrust;
+            @Thrust.performed += instance.OnThrust;
+            @Thrust.canceled += instance.OnThrust;
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
         }
 
         private void UnregisterCallbacks(IDroneActions instance)
@@ -575,12 +652,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
-            @ThrustUp.started -= instance.OnThrustUp;
-            @ThrustUp.performed -= instance.OnThrustUp;
-            @ThrustUp.canceled -= instance.OnThrustUp;
-            @ThrustDown.started -= instance.OnThrustDown;
-            @ThrustDown.performed -= instance.OnThrustDown;
-            @ThrustDown.canceled -= instance.OnThrustDown;
+            @Thrust.started -= instance.OnThrust;
+            @Thrust.performed -= instance.OnThrust;
+            @Thrust.canceled -= instance.OnThrust;
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
         }
 
         public void RemoveCallbacks(IDroneActions instance)
@@ -613,7 +690,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnForwardBackward(InputAction.CallbackContext context);
         void OnStrafe(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnThrustUp(InputAction.CallbackContext context);
-        void OnThrustDown(InputAction.CallbackContext context);
+        void OnThrust(InputAction.CallbackContext context);
+        void OnExit(InputAction.CallbackContext context);
     }
 }

@@ -14197,7 +14197,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 1e-45, z: 1.02e-43, w: 0}
+  m_BoundingSphereOverride: {x: 1.5166e-41, y: 1e-45, z: 1.02e-43, w: 1e-45}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -16603,7 +16603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _progressBar: {fileID: 2107796545}
-  _hackTime: 5
+  _hackTime: 1
   _cameras:
   - {fileID: 1329677325}
   - {fileID: 702883517}
@@ -19754,7 +19754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972744894}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22150636, y: 0.046751115, z: -0.010632326, w: 0.9739796}
+  m_LocalRotation: {x: 0.22150639, y: 0.046751115, z: -0.010632327, w: 0.9739796}
   m_LocalPosition: {x: -0.48177326, y: 4.5286655, z: -4.833789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

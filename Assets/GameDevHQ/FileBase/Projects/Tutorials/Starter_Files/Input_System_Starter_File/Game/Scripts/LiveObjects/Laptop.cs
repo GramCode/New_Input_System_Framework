@@ -55,7 +55,7 @@ namespace Game.Scripts.LiveObjects
                     _interacted = false;
                 }
 
-                _exitCameras = InputManager.Instance.ExitCameras();
+                _exitCameras = InputManager.Instance.BackToPlayer();
 
                 if (_exitCameras)
                 {

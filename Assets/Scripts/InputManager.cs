@@ -48,6 +48,13 @@ public class InputManager : MonoBehaviour
     private bool _swapCam = false;
     private bool _escapePressed = false;
 
+    private float _acceleration = 0f;
+    private float _thrust = 0f;
+    private float _rotate = 0f;
+    private float _strafe = 0f;
+
+    private float[] _values = new float[4];
+
     private List<InputActionMap> _inputActionMaps;
 
     private void Start()
@@ -125,8 +132,15 @@ public class InputManager : MonoBehaviour
                 break;
             case ActionMapsEnum.Drone:
                 _input.Drone.Enable();
+                _input.Drone.Exit.performed += Exit_performed;
                 break;
         }
+    }
+
+    private void Exit_performed(InputAction.CallbackContext context)
+    {
+        _escapePressed = true;
+        SwapActionMap(ActionMapsEnum.Player);
     }
 
     private void Swap_performed(InputAction.CallbackContext context)
@@ -150,7 +164,7 @@ public class InputManager : MonoBehaviour
         return _swapCam;
     }
 
-    public bool ExitCameras()
+    public bool BackToPlayer()
     {
         return _escapePressed;
     }
@@ -158,5 +172,20 @@ public class InputManager : MonoBehaviour
     public void ResetEscape()
     {
         _escapePressed = false;
+    }
+
+    public float[] MoveDrone()
+    {
+        _acceleration = _input.Drone.ForwardBackward.ReadValue<float>();
+        _thrust = _input.Drone.Thrust.ReadValue<float>();
+        _rotate = _input.Drone.Rotate.ReadValue<float>();
+        _strafe = _input.Drone.Strafe.ReadValue<float>();
+
+        _values[0] = _acceleration;
+        _values[1] = _thrust;
+        _values[2] = _rotate;
+        _values[3] = _strafe;
+
+        return _values;
     }
 }

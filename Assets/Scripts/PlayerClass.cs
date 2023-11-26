@@ -29,8 +29,8 @@ public class PlayerClass : MonoBehaviour
         //Forklift.onDriveModeEntered += ReleasePlayerControl;
         //Forklift.onDriveModeExited += ReturnPlayerControl;
         //Forklift.onDriveModeEntered += HidePlayer;
-        //Drone.OnEnterFlightMode += ReleasePlayerControl;
-        //Drone.onExitFlightmode += ReturnPlayerControl;
+        Drone.OnEnterFlightMode += ReleasePlayerControl;
+        Drone.onExitFlightmode += ReturnPlayerControl;
     }
 
     private void Start()
@@ -96,7 +96,7 @@ public class PlayerClass : MonoBehaviour
         //Forklift.onDriveModeEntered -= ReleasePlayerControl;
         //Forklift.onDriveModeExited -= ReturnPlayerControl;
         //Forklift.onDriveModeEntered -= HidePlayer;
-        //Drone.OnEnterFlightMode -= ReleasePlayerControl;
-        //Drone.onExitFlightmode -= ReturnPlayerControl;
+        Drone.OnEnterFlightMode -= ReleasePlayerControl;
+        Drone.onExitFlightmode -= ReturnPlayerControl;
     }
 }
