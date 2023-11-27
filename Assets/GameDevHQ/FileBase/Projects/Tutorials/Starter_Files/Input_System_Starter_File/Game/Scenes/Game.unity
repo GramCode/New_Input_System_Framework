@@ -7598,7 +7598,8 @@ MonoBehaviour:
   _liftSpeed: 1
   _forkliftCam: {fileID: 972744896}
   _driverModel: {fileID: 1509951838}
-  _interactableZone: {fileID: 1277958656}
+  _interactableZone: {fileID: 1277958659}
+  _playerModel: {fileID: 359860631}
 --- !u!65 &402105200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19754,7 +19755,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972744894}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22150639, y: 0.046751115, z: -0.010632327, w: 0.9739796}
+  m_LocalRotation: {x: 0.22150634, y: 0.046751115, z: -0.010632325, w: 0.9739796}
   m_LocalPosition: {x: -0.48177326, y: 4.5286655, z: -4.833789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28299,7 +28300,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1277958656}
+      addedObject: {fileID: 1277958659}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!1 &1277958655 stripped
 GameObject:
@@ -28307,7 +28308,13 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1277958654}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1277958656
+--- !u!4 &1277958657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1277958654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1277958659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28316,7 +28323,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1277958655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 14f24ed6bf1e64b3481223207108700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneType: 1
@@ -28328,12 +28335,6 @@ MonoBehaviour:
   _zoneKeyInput: 101
   _keyState: 0
   _marker: {fileID: 1840441541}
---- !u!4 &1277958657 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5779097134961922744, guid: 1d553f90302742946bbf45996165949c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1277958654}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1280989338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28849,6 +28850,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wooden Pallet
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9d76b14ce284b4364bd7dfb5511ef560,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42085,6 +42091,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wooden Pallet
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9d76b14ce284b4364bd7dfb5511ef560,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44295,6 +44306,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wooden Pallet
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 9d76b14ce284b4364bd7dfb5511ef560,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

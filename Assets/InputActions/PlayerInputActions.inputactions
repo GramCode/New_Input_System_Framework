@@ -237,7 +237,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Exit",
+                    "name": "ExitDrone",
                     "type": "Button",
                     "id": "2ce383e1-51db-43d7-bf46-85f4c7ae3375",
                     "expectedControlType": "Button",
@@ -353,7 +353,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Exit",
+                    "action": "ExitDrone",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -389,6 +389,140 @@
                     "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Forklift",
+            "id": "dac08dab-e8e2-4c5c-93fa-1e97c736206a",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "26f1d18f-e967-499c-b7b2-8fd9c41cf149",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Fork",
+                    "type": "Value",
+                    "id": "6bce1d3a-ea26-4791-9768-1fd0cafe144a",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ExitForklift",
+                    "type": "Button",
+                    "id": "1fa3a861-a17e-42bf-82e3-92c5d73df2af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WSAD",
+                    "id": "112ad6dd-ce10-48aa-86cf-041d2d9145d1",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "d285890b-e2ec-466b-852d-4a3bcfc8def1",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "34e9d797-315b-4c1a-9d96-2a7b4c6a9f2b",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "fdbb7c5e-cead-42ee-ac7b-a7c3823b4acd",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "e67f6081-dfc6-46b2-a3fa-7f3cb868d6f6",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "RF",
+                    "id": "e78df1b0-9deb-495f-94f3-d18ce50e1f54",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fork",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "e31b93ae-20ae-40a9-a19c-fea97e954b76",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fork",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "65a6852b-8fc7-495e-a514-9ae0b9615c9a",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fork",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "620b141a-69c8-453c-804a-f9c399a8e184",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitForklift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

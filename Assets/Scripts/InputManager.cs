@@ -34,7 +34,8 @@ public class InputManager : MonoBehaviour
     {
         Player,
         Cameras,
-        Drone
+        Drone,
+        Forklift
     }
 
     [SerializeField]
@@ -53,7 +54,11 @@ public class InputManager : MonoBehaviour
     private float _rotate = 0f;
     private float _strafe = 0f;
 
-    private float[] _values = new float[4];
+    private Vector2 _forkliftMovement = new Vector2(0,0);
+    private float _fork;
+
+    private float[] _droneValues = new float[4];
+    private float[] _forkliftValues = new float[3];
 
     private List<InputActionMap> _inputActionMaps;
 
@@ -132,12 +137,23 @@ public class InputManager : MonoBehaviour
                 break;
             case ActionMapsEnum.Drone:
                 _input.Drone.Enable();
-                _input.Drone.Exit.performed += Exit_performed;
+                _input.Drone.ExitDrone.performed += ExitDrone_performed;
                 break;
+            case ActionMapsEnum.Forklift:
+                _input.Forklift.Enable();
+                _input.Forklift.ExitForklift.performed += ExitForklift_performed;
+                break;
+                
         }
     }
 
-    private void Exit_performed(InputAction.CallbackContext context)
+    private void ExitForklift_performed(InputAction.CallbackContext context)
+    {
+        _escapePressed = true;
+        SwapActionMap(ActionMapsEnum.Player);
+    }
+
+    private void ExitDrone_performed(InputAction.CallbackContext context)
     {
         _escapePressed = true;
         SwapActionMap(ActionMapsEnum.Player);
@@ -181,11 +197,23 @@ public class InputManager : MonoBehaviour
         _rotate = _input.Drone.Rotate.ReadValue<float>();
         _strafe = _input.Drone.Strafe.ReadValue<float>();
 
-        _values[0] = _acceleration;
-        _values[1] = _thrust;
-        _values[2] = _rotate;
-        _values[3] = _strafe;
+        _droneValues[0] = _acceleration;
+        _droneValues[1] = _thrust;
+        _droneValues[2] = _rotate;
+        _droneValues[3] = _strafe;
 
-        return _values;
+        return _droneValues;
+    }
+
+    public float[] MoveForklift()
+    {
+        _forkliftMovement = _input.Forklift.Move.ReadValue<Vector2>();
+        _fork = _input.Forklift.Fork.ReadValue<float>();
+
+        _forkliftValues[0] = _forkliftMovement.x;
+        _forkliftValues[1] = _forkliftMovement.y;
+        _forkliftValues[2] = _fork;
+
+        return _forkliftValues;
     }
 }

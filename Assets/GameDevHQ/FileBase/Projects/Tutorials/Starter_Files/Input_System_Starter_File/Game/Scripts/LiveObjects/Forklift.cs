@@ -18,17 +18,19 @@ namespace Game.Scripts.LiveObjects
         private GameObject _driverModel;
         private bool _inDriveMode = false;
         [SerializeField]
-        private InteractableZone _interactableZone;
+        private InteractableArea _interactableZone;
+        [SerializeField]
+        private GameObject _playerModel;
 
         public static event Action onDriveModeEntered;
         public static event Action onDriveModeExited;
 
         private void OnEnable()
         {
-            InteractableZone.onZoneInteractionComplete += EnterDriveMode;
+            InteractableArea.onZoneInteractionComplete += EnterDriveMode;
         }
 
-        private void EnterDriveMode(InteractableZone zone)
+        private void EnterDriveMode(InteractableArea zone)
         {
             if (_inDriveMode !=true && zone.GetZoneID() == 5) //Enter ForkLift
             {
@@ -37,6 +39,8 @@ namespace Game.Scripts.LiveObjects
                 onDriveModeEntered?.Invoke();
                 _driverModel.SetActive(true);
                 _interactableZone.CompleteTask(5);
+                InputManager.Instance.SwapActionMap(InputManager.ActionMapsEnum.Forklift);
+                _playerModel.SetActive(false);
             }
         }
 
@@ -46,7 +50,8 @@ namespace Game.Scripts.LiveObjects
             _forkliftCam.Priority = 9;            
             _driverModel.SetActive(false);
             onDriveModeExited?.Invoke();
-            
+            _playerModel.transform.position = new Vector3(transform.position.x, 0.4f, transform.position.z - 1);
+            _playerModel.SetActive(true);
         }
 
         private void Update()
@@ -63,8 +68,10 @@ namespace Game.Scripts.LiveObjects
 
         private void CalcutateMovement()
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            float h = InputManager.Instance.MoveForklift()[0]; //x value
+            float v = InputManager.Instance.MoveForklift()[1]; //y value
+            //float h = Input.GetAxisRaw("Horizontal");
+            //float v = Input.GetAxisRaw("Vertical");
             var direction = new Vector3(0, 0, v);
             var velocity = direction * _speed;
 
@@ -80,9 +87,10 @@ namespace Game.Scripts.LiveObjects
 
         private void LiftControls()
         {
-            if (Input.GetKey(KeyCode.R))
+            var liftValue = InputManager.Instance.MoveForklift()[2]; //fork value
+            if (liftValue > 0)
                 LiftUpRoutine();
-            else if (Input.GetKey(KeyCode.T))
+            else if (liftValue < 0)
                 LiftDownRoutine();
         }
 
@@ -112,7 +120,7 @@ namespace Game.Scripts.LiveObjects
 
         private void OnDisable()
         {
-            InteractableZone.onZoneInteractionComplete -= EnterDriveMode;
+            InteractableArea.onZoneInteractionComplete -= EnterDriveMode;
         }
 
     }
