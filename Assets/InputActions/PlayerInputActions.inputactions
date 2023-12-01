@@ -22,6 +22,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HoldAction",
+                    "type": "Button",
+                    "id": "02b8c948-ee41-4711-ab23-6ca173945382",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TapAction",
+                    "type": "Button",
+                    "id": "b4bfb42d-60b9-4225-bdee-bfe6c30882f3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -145,6 +163,28 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9dcde29f-4fad-495c-a94c-4fad3e254421",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HoldAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c254b95-5a8b-4a14-9973-ede1e0f1b2b3",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TapAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -162,7 +202,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ExitCam",
+                    "name": "ExitCameras",
                     "type": "Button",
                     "id": "032efdcb-0745-4353-8a7f-f9f1a7c0e4aa",
                     "expectedControlType": "Button",
@@ -190,7 +230,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ExitCam",
+                    "action": "ExitCameras",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -2524,7 +2524,9 @@ MonoBehaviour:
   - {fileID: 1438920402}
   - {fileID: 547960046}
   _crateCollider: {fileID: 147778362}
-  _interactableZone: {fileID: 197238855}
+  _interactableZone: {fileID: 197238857}
+  _player: {fileID: 359860635}
+  _piecesBroken: 5
 --- !u!65 &147778362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3507,7 +3509,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 197238855}
+      addedObject: {fileID: 197238857}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!4 &197238853 stripped
 Transform:
@@ -3521,7 +3523,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 197238852}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &197238855
+--- !u!114 &197238857
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3530,13 +3532,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 197238854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 14f24ed6bf1e64b3481223207108700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneType: 1
   _zoneID: 6
   _requiredID: 5
-  _displayMessage: Break the Crate
+  _displayMessage: Punch the Crate
   _zoneItems: []
   _inventoryIcon: {fileID: 21300000, guid: 88841726d7ebbfc46bf799ee1bfb7d3f, type: 3}
   _zoneKeyInput: 101
@@ -14198,7 +14200,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1.5166e-41, y: 1e-45, z: 1.02e-43, w: 1e-45}
+  m_BoundingSphereOverride: {x: 1e-45, y: 1.8706824e-12, z: 1e-45, w: 4.573642e+35}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -19581,7 +19583,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1499452540912398508, guid: 1d553f90302742946bbf45996165949c,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 965513072}
+      addedObject: {fileID: 965513074}
   m_SourcePrefab: {fileID: 100100000, guid: 1d553f90302742946bbf45996165949c, type: 3}
 --- !u!4 &965513069 stripped
 Transform:
@@ -19607,7 +19609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9400795a35f234bacc8bff7c8c3e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &965513072
+--- !u!114 &965513074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19616,7 +19618,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 965513070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86c443bd499cba4195e4024731710ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 14f24ed6bf1e64b3481223207108700f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _zoneType: 1
@@ -19755,7 +19757,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972744894}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22150634, y: 0.046751115, z: -0.010632325, w: 0.9739796}
+  m_LocalRotation: {x: 0.22150636, y: 0.046751115, z: -0.010632326, w: 0.9739796}
   m_LocalPosition: {x: -0.48177326, y: 4.5286655, z: -4.833789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

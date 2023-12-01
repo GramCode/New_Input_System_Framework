@@ -40,7 +40,6 @@ namespace Game.Scripts.LiveObjects
                 _driverModel.SetActive(true);
                 _interactableZone.CompleteTask(5);
                 InputManager.Instance.SwapActionMap(InputManager.ActionMapsEnum.Forklift);
-                _playerModel.SetActive(false);
             }
         }
 
@@ -51,7 +50,8 @@ namespace Game.Scripts.LiveObjects
             _driverModel.SetActive(false);
             onDriveModeExited?.Invoke();
             _playerModel.transform.position = new Vector3(transform.position.x, 0.4f, transform.position.z - 1);
-            _playerModel.SetActive(true);
+            InputManager.Instance.ResetEscape();
+            InputManager.Instance.SwapActionMap(InputManager.ActionMapsEnum.Player);
         }
 
         private void Update()
@@ -70,8 +70,6 @@ namespace Game.Scripts.LiveObjects
         {
             float h = InputManager.Instance.MoveForklift()[0]; //x value
             float v = InputManager.Instance.MoveForklift()[1]; //y value
-            //float h = Input.GetAxisRaw("Horizontal");
-            //float v = Input.GetAxisRaw("Vertical");
             var direction = new Vector3(0, 0, v);
             var velocity = direction * _speed;
 

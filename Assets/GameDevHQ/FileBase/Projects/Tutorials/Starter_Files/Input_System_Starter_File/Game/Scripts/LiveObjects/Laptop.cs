@@ -21,6 +21,7 @@ namespace Game.Scripts.LiveObjects
         private InteractableArea _interactableZone;
         private bool _interacted = false;
         private bool _exitCameras = false;
+        private bool _hackComplete = false;
 
         public static event Action onHackComplete;
         public static event Action onHackEnded;
@@ -35,7 +36,6 @@ namespace Game.Scripts.LiveObjects
         {
             if (_hacked == true)
             {
-                InputManager.Instance.SwapActionMap(InputManager.ActionMapsEnum.Cameras);
                 _interacted = InputManager.Instance.SwapCamera();
 
                 if (_interacted)
@@ -59,12 +59,12 @@ namespace Game.Scripts.LiveObjects
 
                 if (_exitCameras)
                 {
-                    InputManager.Instance.SwapActionMap(InputManager.ActionMapsEnum.Player);
-                    _hacked = false;
                     _interactableZone.HoldPerformed();
                     onHackEnded?.Invoke();
+                    _hacked = false;
                     ResetCameras();
                     InputManager.Instance.ResetEscape();
+                    InputManager.Instance.SwapActionMap(InputManager.ActionMapsEnum.Player);
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace Game.Scripts.LiveObjects
 
         private void InteractableZone_onHoldStarted(int zoneID)
         {
-            if (zoneID == 3 && _hacked == false && _progressBar.value == 0) //Hacking terminal
+            if (zoneID == 3 && _hacked == false && _progressBar.value == 0 && _hackComplete == false) //Hacking terminal
             {
                 _progressBar.gameObject.SetActive(true);
                 StartCoroutine(HackingRoutine());
@@ -108,17 +108,21 @@ namespace Game.Scripts.LiveObjects
                 _progressBar.value += Time.deltaTime / _hackTime;
                 yield return new WaitForEndOfFrame();
             }
-
+            
             //successfully hacked
             _hacked = true;
+            _hackComplete = true;
             _interactableZone.CompleteTask(3);
             //hide progress bar
             _progressBar.gameObject.SetActive(false);
             
             //enable Vcam1
             _cameras[0].Priority = 11;
+            //swap action map
+            InputManager.Instance.SwapActionMap(InputManager.ActionMapsEnum.Cameras);
+
         }
-        
+
         private void OnDisable()
         {
             InteractableArea.onHoldStarted -= InteractableZone_onHoldStarted;

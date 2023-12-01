@@ -48,6 +48,8 @@ public class InputManager : MonoBehaviour
     private bool _canInteract = false;
     private bool _swapCam = false;
     private bool _escapePressed = false;
+    private bool _holdActionPerformed = false;
+    private bool _tapActionPerformed = false;
 
     private float _acceleration = 0f;
     private float _thrust = 0f;
@@ -68,6 +70,8 @@ public class InputManager : MonoBehaviour
         _input.Player.Enable();
         _input.Player.Interact.started += Interact_started;
         _input.Player.Interact.canceled += Interact_canceled;
+        _input.Player.HoldAction.performed += HoldAction_performed;
+        _input.Player.TapAction.performed += TapAction_performed;
 
         _inputActionMaps = new List<InputActionMap>
         {
@@ -75,6 +79,16 @@ public class InputManager : MonoBehaviour
             _input.Cameras,
             _input.Drone
         };
+    }
+
+    private void TapAction_performed(InputAction.CallbackContext context)
+    {
+        _tapActionPerformed = true;
+    }
+
+    private void HoldAction_performed(InputAction.CallbackContext context)
+    {
+        _holdActionPerformed = true;
     }
 
     private void Interact_started(InputAction.CallbackContext context)
@@ -90,6 +104,95 @@ public class InputManager : MonoBehaviour
     public bool Interacted()
     {
         return _canInteract;
+    }
+
+    public bool TapPerformed()
+    {
+        return _tapActionPerformed;
+    }
+
+    public bool HoldPerformed()
+    {
+        return _holdActionPerformed;
+    }
+
+    public void SwapActionMap(ActionMapsEnum actionMap)
+    {
+        foreach (var map in _inputActionMaps)
+        {
+            map.Disable();
+        }
+
+        switch (actionMap)
+        {
+            case ActionMapsEnum.Player:
+                _input.Player.Enable();
+                break;
+            case ActionMapsEnum.Cameras:
+                _input.Cameras.Enable();
+                _input.Cameras.Swap.performed += Swap_performed;
+                _input.Cameras.ExitCameras.performed += ExitCameras_performed;
+                break;
+            case ActionMapsEnum.Drone:
+                _input.Drone.Enable();
+                _input.Drone.ExitDrone.performed += ExitDrone_performed;
+                break;
+            case ActionMapsEnum.Forklift:
+                _input.Forklift.Enable();
+                _input.Forklift.ExitForklift.performed += ExitForklift_performed;
+                break;
+                
+        }
+    }
+
+    private void ExitForklift_performed(InputAction.CallbackContext context)
+    {
+        _escapePressed = true;
+    }
+
+    private void ExitDrone_performed(InputAction.CallbackContext context)
+    {
+        _escapePressed = true;
+    }
+
+    private void Swap_performed(InputAction.CallbackContext context)
+    {
+        _swapCam = true;
+    }
+
+    public void StopSwappingCameras()
+    {
+        _swapCam = false;
+    }
+
+    private void ExitCameras_performed(InputAction.CallbackContext context)
+    {
+        _escapePressed = true;
+    }
+
+    public bool SwapCamera()
+    {
+        return _swapCam;
+    }
+
+    public bool BackToPlayer()
+    {
+        return _escapePressed;
+    }
+
+    public void ResetEscape()
+    {
+        _escapePressed = false;
+    }
+
+    public void ResetHoldInteraction()
+    {
+        _holdActionPerformed = false;
+    }
+
+    public void ResetTap()
+    {
+        _tapActionPerformed = false;
     }
 
     public void MovePlayer(Transform player, float speed, CharacterController controller, Animator anim, float rotationMultiplier)
@@ -116,78 +219,6 @@ public class InputManager : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
         player.Rotate(player.up * horizontal);
 
-    }
-
-    public void SwapActionMap(ActionMapsEnum actionMap)
-    {
-        foreach (var map in _inputActionMaps)
-        {
-            map.Disable();
-        }
-
-        switch (actionMap)
-        {
-            case ActionMapsEnum.Player:
-                _input.Player.Enable();
-                break;
-            case ActionMapsEnum.Cameras:
-                _input.Cameras.Enable();
-                _input.Cameras.Swap.performed += Swap_performed;
-                _input.Cameras.ExitCam.performed += ExitCam_performed;
-                break;
-            case ActionMapsEnum.Drone:
-                _input.Drone.Enable();
-                _input.Drone.ExitDrone.performed += ExitDrone_performed;
-                break;
-            case ActionMapsEnum.Forklift:
-                _input.Forklift.Enable();
-                _input.Forklift.ExitForklift.performed += ExitForklift_performed;
-                break;
-                
-        }
-    }
-
-    private void ExitForklift_performed(InputAction.CallbackContext context)
-    {
-        _escapePressed = true;
-        SwapActionMap(ActionMapsEnum.Player);
-    }
-
-    private void ExitDrone_performed(InputAction.CallbackContext context)
-    {
-        _escapePressed = true;
-        SwapActionMap(ActionMapsEnum.Player);
-    }
-
-    private void Swap_performed(InputAction.CallbackContext context)
-    {
-        _swapCam = true;
-    }
-
-    public void StopSwappingCameras()
-    {
-        _swapCam = false;
-    }
-
-    private void ExitCam_performed(InputAction.CallbackContext context)
-    {
-        SwapActionMap(ActionMapsEnum.Player);
-        _escapePressed = true;
-    }
-
-    public bool SwapCamera()
-    {
-        return _swapCam;
-    }
-
-    public bool BackToPlayer()
-    {
-        return _escapePressed;
-    }
-
-    public void ResetEscape()
-    {
-        _escapePressed = false;
     }
 
     public float[] MoveDrone()

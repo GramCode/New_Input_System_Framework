@@ -44,6 +44,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HoldAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""02b8c948-ee41-4711-ab23-6ca173945382"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TapAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4bfb42d-60b9-4225-bdee-bfe6c30882f3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -167,6 +185,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dcde29f-4fad-495c-a94c-4fad3e254421"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HoldAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c254b95-5a8b-4a14-9973-ede1e0f1b2b3"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TapAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -184,7 +224,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ExitCam"",
+                    ""name"": ""ExitCameras"",
                     ""type"": ""Button"",
                     ""id"": ""032efdcb-0745-4353-8a7f-f9f1a7c0e4aa"",
                     ""expectedControlType"": ""Button"",
@@ -212,7 +252,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ExitCam"",
+                    ""action"": ""ExitCameras"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -555,10 +595,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_HoldAction = m_Player.FindAction("HoldAction", throwIfNotFound: true);
+        m_Player_TapAction = m_Player.FindAction("TapAction", throwIfNotFound: true);
         // Cameras
         m_Cameras = asset.FindActionMap("Cameras", throwIfNotFound: true);
         m_Cameras_Swap = m_Cameras.FindAction("Swap", throwIfNotFound: true);
-        m_Cameras_ExitCam = m_Cameras.FindAction("ExitCam", throwIfNotFound: true);
+        m_Cameras_ExitCameras = m_Cameras.FindAction("ExitCameras", throwIfNotFound: true);
         // Drone
         m_Drone = asset.FindActionMap("Drone", throwIfNotFound: true);
         m_Drone_ForwardBackward = m_Drone.FindAction("ForwardBackward", throwIfNotFound: true);
@@ -634,12 +676,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_HoldAction;
+    private readonly InputAction m_Player_TapAction;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @HoldAction => m_Wrapper.m_Player_HoldAction;
+        public InputAction @TapAction => m_Wrapper.m_Player_TapAction;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -655,6 +701,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @HoldAction.started += instance.OnHoldAction;
+            @HoldAction.performed += instance.OnHoldAction;
+            @HoldAction.canceled += instance.OnHoldAction;
+            @TapAction.started += instance.OnTapAction;
+            @TapAction.performed += instance.OnTapAction;
+            @TapAction.canceled += instance.OnTapAction;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -665,6 +717,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @HoldAction.started -= instance.OnHoldAction;
+            @HoldAction.performed -= instance.OnHoldAction;
+            @HoldAction.canceled -= instance.OnHoldAction;
+            @TapAction.started -= instance.OnTapAction;
+            @TapAction.performed -= instance.OnTapAction;
+            @TapAction.canceled -= instance.OnTapAction;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -687,13 +745,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Cameras;
     private List<ICamerasActions> m_CamerasActionsCallbackInterfaces = new List<ICamerasActions>();
     private readonly InputAction m_Cameras_Swap;
-    private readonly InputAction m_Cameras_ExitCam;
+    private readonly InputAction m_Cameras_ExitCameras;
     public struct CamerasActions
     {
         private @PlayerInputActions m_Wrapper;
         public CamerasActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Swap => m_Wrapper.m_Cameras_Swap;
-        public InputAction @ExitCam => m_Wrapper.m_Cameras_ExitCam;
+        public InputAction @ExitCameras => m_Wrapper.m_Cameras_ExitCameras;
         public InputActionMap Get() { return m_Wrapper.m_Cameras; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -706,9 +764,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Swap.started += instance.OnSwap;
             @Swap.performed += instance.OnSwap;
             @Swap.canceled += instance.OnSwap;
-            @ExitCam.started += instance.OnExitCam;
-            @ExitCam.performed += instance.OnExitCam;
-            @ExitCam.canceled += instance.OnExitCam;
+            @ExitCameras.started += instance.OnExitCameras;
+            @ExitCameras.performed += instance.OnExitCameras;
+            @ExitCameras.canceled += instance.OnExitCameras;
         }
 
         private void UnregisterCallbacks(ICamerasActions instance)
@@ -716,9 +774,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Swap.started -= instance.OnSwap;
             @Swap.performed -= instance.OnSwap;
             @Swap.canceled -= instance.OnSwap;
-            @ExitCam.started -= instance.OnExitCam;
-            @ExitCam.performed -= instance.OnExitCam;
-            @ExitCam.canceled -= instance.OnExitCam;
+            @ExitCameras.started -= instance.OnExitCameras;
+            @ExitCameras.performed -= instance.OnExitCameras;
+            @ExitCameras.canceled -= instance.OnExitCameras;
         }
 
         public void RemoveCallbacks(ICamerasActions instance)
@@ -880,11 +938,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnHoldAction(InputAction.CallbackContext context);
+        void OnTapAction(InputAction.CallbackContext context);
     }
     public interface ICamerasActions
     {
         void OnSwap(InputAction.CallbackContext context);
-        void OnExitCam(InputAction.CallbackContext context);
+        void OnExitCameras(InputAction.CallbackContext context);
     }
     public interface IDroneActions
     {

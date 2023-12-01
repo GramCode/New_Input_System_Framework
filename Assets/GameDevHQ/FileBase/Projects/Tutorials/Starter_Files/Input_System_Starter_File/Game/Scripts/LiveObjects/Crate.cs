@@ -10,20 +10,22 @@ namespace Game.Scripts.LiveObjects
         [SerializeField] private GameObject _wholeCrate, _brokenCrate;
         [SerializeField] private Rigidbody[] _pieces;
         [SerializeField] private BoxCollider _crateCollider;
-        [SerializeField] private InteractableZone _interactableZone;
-        private bool _isReadyToBreak = false;
+        [SerializeField] private InteractableArea _interactableZone;
+        [SerializeField] private PlayerClass _player;
+        [SerializeField] private int _pieceToBreak = 5;
 
+        private bool _isReadyToBreak = false;
         private List<Rigidbody> _brakeOff = new List<Rigidbody>();
 
         private void OnEnable()
         {
-            InteractableZone.onZoneInteractionComplete += InteractableZone_onZoneInteractionComplete;
+            InteractableArea.onZoneInteractionComplete += InteractableZone_onZoneInteractionComplete;
         }
 
-        private void InteractableZone_onZoneInteractionComplete(InteractableZone zone)
+        private void InteractableZone_onZoneInteractionComplete(InteractableArea zone)
         {
             
-            if (_isReadyToBreak == false && _brakeOff.Count >0)
+            if (_isReadyToBreak == false && _brakeOff.Count > 0)
             {
                 _wholeCrate.SetActive(false);
                 _brokenCrate.SetActive(true);
@@ -34,8 +36,8 @@ namespace Game.Scripts.LiveObjects
             {
                 if (_brakeOff.Count > 0)
                 {
-                    BreakPart();
                     StartCoroutine(PunchDelay());
+                    PlayPlayerAnimation(zone);
                 }
                 else if(_brakeOff.Count == 0)
                 {
@@ -53,7 +55,23 @@ namespace Game.Scripts.LiveObjects
             
         }
 
+        private void PlayPlayerAnimation(InteractableArea zone)
+        {
 
+            if (InputManager.Instance.HoldPerformed())
+            {
+                _player.KickAnim();
+                zone.ResetHoldAction(6);
+                BreakParts();
+            }
+            else if (InputManager.Instance.TapPerformed())
+            {
+                _player.PuchAnim();
+                zone.ResetTapAction(6);
+                BreakPart();
+            }
+                
+        }
 
         public void BreakPart()
         {
@@ -61,6 +79,21 @@ namespace Game.Scripts.LiveObjects
             _brakeOff[rng].constraints = RigidbodyConstraints.None;
             _brakeOff[rng].AddForce(new Vector3(1f, 1f, 1f), ForceMode.Force);
             _brakeOff.Remove(_brakeOff[rng]);            
+        }
+
+        public void BreakParts()
+        {
+            if (_brakeOff.Count <= _pieceToBreak)
+                _pieceToBreak = _brakeOff.Count;
+
+            for (int i = 0; i < _pieceToBreak; i++)
+            {
+                int rng = Random.Range(0, _brakeOff.Count);
+
+                _brakeOff[rng].constraints = RigidbodyConstraints.None;
+                _brakeOff[rng].AddForce(new Vector3(1f, 1f, 1f), ForceMode.Force);
+                _brakeOff.Remove(_brakeOff[rng]);
+            }
         }
 
         IEnumerator PunchDelay()
@@ -73,11 +106,13 @@ namespace Game.Scripts.LiveObjects
             }
 
             _interactableZone.ResetAction(6);
+            _interactableZone.ResetHoldAction(6);
+            _interactableZone.ResetTapAction(6);
         }
 
         private void OnDisable()
         {
-            InteractableZone.onZoneInteractionComplete -= InteractableZone_onZoneInteractionComplete;
+            InteractableArea.onZoneInteractionComplete -= InteractableZone_onZoneInteractionComplete;
         }
     }
 }

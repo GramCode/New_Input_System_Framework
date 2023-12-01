@@ -26,9 +26,9 @@ public class PlayerClass : MonoBehaviour
         InteractableArea.onZoneInteractionComplete += InteractableArea_onZoneInteractionComplete;
         Laptop.onHackComplete += ReleasePlayerControl;
         Laptop.onHackEnded += ReturnPlayerControl;
-        //Forklift.onDriveModeEntered += ReleasePlayerControl;
-        //Forklift.onDriveModeExited += ReturnPlayerControl;
-        //Forklift.onDriveModeEntered += HidePlayer;
+        Forklift.onDriveModeEntered += ReleasePlayerControl;
+        Forklift.onDriveModeExited += ReturnPlayerControl;
+        Forklift.onDriveModeEntered += HidePlayer;
         Drone.OnEnterFlightMode += ReleasePlayerControl;
         Drone.onExitFlightmode += ReturnPlayerControl;
     }
@@ -82,20 +82,34 @@ public class PlayerClass : MonoBehaviour
         _followCam.Priority = 10;
     }
 
+    private void HidePlayer()
+    {
+        _model.SetActive(false);
+    }
+
     private void TriggerExplosive()
     {
         _detonator.TriggerExplosion();
     }
 
+    public void PuchAnim()
+    {
+        _anim.SetTrigger("Punch");
+    }
+
+    public void KickAnim()
+    {
+        _anim.SetTrigger("Kick");
+    }
 
     private void OnDisable()
     {
         InteractableArea.onZoneInteractionComplete -= InteractableArea_onZoneInteractionComplete;
         Laptop.onHackComplete -= ReleasePlayerControl;
         Laptop.onHackEnded -= ReturnPlayerControl;
-        //Forklift.onDriveModeEntered -= ReleasePlayerControl;
-        //Forklift.onDriveModeExited -= ReturnPlayerControl;
-        //Forklift.onDriveModeEntered -= HidePlayer;
+        Forklift.onDriveModeEntered -= ReleasePlayerControl;
+        Forklift.onDriveModeExited -= ReturnPlayerControl;
+        Forklift.onDriveModeEntered -= HidePlayer;
         Drone.OnEnterFlightMode -= ReleasePlayerControl;
         Drone.onExitFlightmode -= ReturnPlayerControl;
     }
