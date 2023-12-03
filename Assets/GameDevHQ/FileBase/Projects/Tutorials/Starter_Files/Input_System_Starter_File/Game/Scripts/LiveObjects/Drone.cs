@@ -56,7 +56,6 @@ namespace Game.Scripts.LiveObjects
             UIManager.Instance.DroneView(false);
             InputManager.Instance.ResetEscape();
             InputManager.Instance.SwapActionMap(InputManager.ActionMapsEnum.Player);
-            Debug.Log("Exited Flight Mode");
         }
 
         private void Update()
@@ -65,7 +64,6 @@ namespace Game.Scripts.LiveObjects
             {
                 CalculateTilt();
                 CalculateMovementUpdate();
-                Debug.Log("escape pressed: " + InputManager.Instance.BackToPlayer());
                 if (InputManager.Instance.BackToPlayer())
                 {
                     onExitFlightmode?.Invoke();

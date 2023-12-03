@@ -2526,7 +2526,7 @@ MonoBehaviour:
   _crateCollider: {fileID: 147778362}
   _interactableZone: {fileID: 197238857}
   _player: {fileID: 359860635}
-  _piecesBroken: 5
+  _pieceToBreak: 5
 --- !u!65 &147778362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8237,6 +8237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 420450572}
+  - component: {fileID: 420450573}
   m_Layer: 0
   m_Name: PalletBlockade
   m_TagString: Untagged
@@ -8295,6 +8296,27 @@ Transform:
   - {fileID: 1930683021}
   m_Father: {fileID: 350562255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &420450573
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420450571}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.83, y: 1.45, z: 1}
+  m_Center: {x: 0.84, y: 0.83, z: 0}
 --- !u!4 &422540710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 83b308def8e254c558e3d7c4628b4fe2,
@@ -9383,6 +9405,7 @@ Transform:
   - {fileID: 1277958657}
   - {fileID: 1697462201}
   - {fileID: 2009110239}
+  - {fileID: 1739140603}
   m_Father: {fileID: 887137146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &485947345 stripped
@@ -15579,6 +15602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 779572156}
+  - component: {fileID: 779572157}
   m_Layer: 0
   m_Name: Large_Trash
   m_TagString: Untagged
@@ -15626,6 +15650,27 @@ Transform:
   - {fileID: 1364376601}
   m_Father: {fileID: 350562255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &779572157
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779572155}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9, y: 1.79, z: 1}
+  m_Center: {x: 13.71, y: 1.24, z: 8.7}
 --- !u!1001 &783118397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19757,7 +19802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972744894}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22150636, y: 0.046751115, z: -0.010632326, w: 0.9739796}
+  m_LocalRotation: {x: 0.22150414, y: 0.046955757, z: -0.010678869, w: 0.97396976}
   m_LocalPosition: {x: -0.48177326, y: 4.5286655, z: -4.833789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31067,6 +31112,10 @@ PrefabInstance:
       value: Dumpster_01
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: f04029c8320564b13b5afe311e7d5a24, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: f04029c8320564b13b5afe311e7d5a24, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -37755,6 +37804,75 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c8ee51ff94ab41cc89fab3b4036aba7, type: 3}
+--- !u!1 &1739140602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1739140603}
+  - component: {fileID: 1739140605}
+  - component: {fileID: 1739140604}
+  m_Layer: 0
+  m_Name: StraightenForklift
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1739140603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739140602}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.882, y: -4.076, z: 8.054}
+  m_LocalScale: {x: 2.77565, y: 1, z: 0.81212}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 485545740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1739140604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739140602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc01cd113cd71435f825227bbd083c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _displayMessage: Straighten Forklift.
+  _zoneKeyInput: 101
+  _forklift: {fileID: 1697462201}
+--- !u!65 &1739140605
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739140602}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1746601131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: fb55bc095104c444693576b2d9184da6,
