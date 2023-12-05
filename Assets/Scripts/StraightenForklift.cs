@@ -21,6 +21,7 @@ public class StraightenForklift : MonoBehaviour
         {
             Straighten();
             _straightenForklift = false;
+            UIManager.Instance.DisplayInteractableZoneMessage(false);
         }
     }
 
@@ -46,7 +47,7 @@ public class StraightenForklift : MonoBehaviour
     {
         if (_displayMessage != null)
         {
-            string message = $"Press the {_zoneKeyInput.ToString()} key to {_displayMessage}.";
+            string message = $"Press {InputManager.Instance.SpriteToDisplay()} to {_displayMessage}";
             UIManager.Instance.DisplayInteractableZoneMessage(true, message);
         }
         else

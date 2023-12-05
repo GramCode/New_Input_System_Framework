@@ -252,7 +252,7 @@ public class InteractableArea : MonoBehaviour
 
                         if (_displayMessage != null)
                         {
-                            string message = $"Press the {_zoneKeyInput.ToString()} key to {_displayMessage}.";
+                            string message = $"Press {InputManager.Instance.SpriteToDisplay()} to {_displayMessage}";
                             UIManager.Instance.DisplayInteractableZoneMessage(true, message);
                         }
                         else
@@ -269,7 +269,7 @@ public class InteractableArea : MonoBehaviour
                         {
                             if (_displayMessage != null)
                             {
-                                string message = $"Press the {_zoneKeyInput.ToString()} key to {_displayMessage}. Hold the {_zoneKeyInput.ToString()} key to Kick the Crate";
+                                string message = $"Press or hold {InputManager.Instance.SpriteToDisplay()} to {_displayMessage}";
                                 UIManager.Instance.DisplayInteractableZoneMessage(true, message);
                             }
                             else
@@ -282,7 +282,7 @@ public class InteractableArea : MonoBehaviour
                         {
                             if (_displayMessage != null)
                             {
-                                string message = $"Press the {_zoneKeyInput.ToString()} key to {_displayMessage}.";
+                                string message = $"Press {InputManager.Instance.SpriteToDisplay()} to {_displayMessage}";
                                 UIManager.Instance.DisplayInteractableZoneMessage(true, message);
                             }
                             else
@@ -296,7 +296,7 @@ public class InteractableArea : MonoBehaviour
                         _inZone = true;
                         if (_displayMessage != null)
                         {
-                            string message = $"Hold the {_zoneKeyInput.ToString()} key to {_displayMessage}.";
+                            string message = $"Hold {InputManager.Instance.SpriteToDisplay()} to {_displayMessage}";
                             UIManager.Instance.DisplayInteractableZoneMessage(true, message);
                         }
                         else

@@ -12,7 +12,7 @@ public class PlayerClass : MonoBehaviour
     private float _speed = 4f;
     private PlayerInputActions _input;
     [SerializeField]
-    private float _rotationMultiplier = 1.5f;
+    private float _rotationMultiplier = 3f;
     [SerializeField]
     private Detonator _detonator;
     private bool _canMove = true;

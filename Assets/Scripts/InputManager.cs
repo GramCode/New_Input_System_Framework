@@ -25,11 +25,6 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        _instance = this;
-    }
-
     public enum ActionMapsEnum
     {
         Player,
@@ -38,10 +33,12 @@ public class InputManager : MonoBehaviour
         Forklift
     }
 
-    [SerializeField]
-    private InteractableArea _holdArea;
-    [SerializeField]
-    private GameObject[] _markers;
+    public enum InputDeviceType
+    {
+        Keyboard,
+        PlayStation,
+        Xbox
+    }
 
     private PlayerInputActions _input;
     private bool _playerGrounded;
@@ -55,14 +52,56 @@ public class InputManager : MonoBehaviour
     private float _thrust = 0f;
     private float _rotate = 0f;
     private float _strafe = 0f;
+    private float _fork;
 
     private Vector2 _forkliftMovement = new Vector2(0,0);
-    private float _fork;
 
     private float[] _droneValues = new float[4];
     private float[] _forkliftValues = new float[3];
 
     private List<InputActionMap> _inputActionMaps;
+    
+    [SerializeField]
+    private string[] _spritesIndexText; //0 = PlayStation button, 1 = Xbox button, 2 = keyboard E key
+    private InputDeviceType _inputDevice;
+
+    private bool _gamepadConnected = false;
+
+    private void Awake()
+    {
+        _instance = this;
+        StartCoroutine(CheckForControllers());
+    }
+
+    IEnumerator CheckForControllers()
+    {
+        while (true)
+        {
+            var controllers = Input.GetJoystickNames();
+            
+            if (!_gamepadConnected && controllers.Length > 0)
+            {
+                _gamepadConnected = true;
+
+                if (Gamepad.current is UnityEngine.InputSystem.DualShock.DualShockGamepad)
+                {
+                    _inputDevice = InputDeviceType.PlayStation;
+                }
+
+                if (Gamepad.current is UnityEngine.InputSystem.XInput.XInputController)
+                {
+                    _inputDevice = InputDeviceType.Xbox;
+                }
+            }
+            else if (_gamepadConnected && controllers.Length == 0)
+            {
+                _gamepadConnected = false;
+                _inputDevice = InputDeviceType.Keyboard;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
 
     private void Start()
     {
@@ -81,16 +120,6 @@ public class InputManager : MonoBehaviour
         };
     }
 
-    private void TapAction_performed(InputAction.CallbackContext context)
-    {
-        _tapActionPerformed = true;
-    }
-
-    private void HoldAction_performed(InputAction.CallbackContext context)
-    {
-        _holdActionPerformed = true;
-    }
-
     private void Interact_started(InputAction.CallbackContext context)
     {
         _canInteract = true;
@@ -99,6 +128,16 @@ public class InputManager : MonoBehaviour
     private void Interact_canceled(InputAction.CallbackContext context)
     {
         _canInteract = false;
+    }
+
+    private void HoldAction_performed(InputAction.CallbackContext context)
+    {
+        _holdActionPerformed = true;
+    }
+
+    private void TapAction_performed(InputAction.CallbackContext context)
+    {
+        _tapActionPerformed = true;
     }
 
     public bool Interacted()
@@ -195,6 +234,33 @@ public class InputManager : MonoBehaviour
         _tapActionPerformed = false;
     }
 
+    public string SpriteToDisplay()
+    {
+        string name;
+
+        if (_gamepadConnected)
+        {
+            switch (_inputDevice)
+            {
+                case InputDeviceType.PlayStation:
+                    name = $"{_spritesIndexText[0]}";
+                    break;
+                case InputDeviceType.Xbox:
+                    name = $"{_spritesIndexText[1]}";
+                    break;
+                default:
+                    name = $"{_spritesIndexText[0]}";
+                    break;
+            }
+        }
+        else
+        {
+            name = _spritesIndexText[2];
+        }
+       
+        return name;
+    }
+
     public void MovePlayer(Transform player, float speed, CharacterController controller, Animator anim, float rotationMultiplier)
     {
         _playerGrounded = controller.isGrounded;
@@ -207,7 +273,6 @@ public class InputManager : MonoBehaviour
 
 
         anim.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
-
 
         if (_playerGrounded)
             velocity.y = 0f;
@@ -247,4 +312,5 @@ public class InputManager : MonoBehaviour
 
         return _forkliftValues;
     }
+
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Game.Scripts.UI
 {
@@ -22,7 +23,7 @@ namespace Game.Scripts.UI
         #endregion
 
         [SerializeField]
-        private Text _interactableZone;
+        private TMP_Text _interactableText;
         [SerializeField]
         private Image _inventoryDisplay;
         [SerializeField]
@@ -35,8 +36,8 @@ namespace Game.Scripts.UI
 
         public void DisplayInteractableZoneMessage(bool showMessage, string message = null)
         {
-            _interactableZone.text = message;
-            _interactableZone.gameObject.SetActive(showMessage);
+            _interactableText.text = message;
+            _interactableText.gameObject.SetActive(showMessage);
         }
 
         public void UpdateInventoryDisplay(Sprite icon)
